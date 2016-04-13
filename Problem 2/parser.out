@@ -1,0 +1,164 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> load
+Rule 2     start -> data
+Rule 3     load -> LOAD
+Rule 4     data -> float TAB float TAB float TAB float TAB float
+Rule 5     float -> INTEGER . INTEGER
+
+Terminals, with rules where they appear
+
+.                    : 5
+INTEGER              : 5 5
+LOAD                 : 3
+TAB                  : 4 4 4 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+data                 : 2
+float                : 4 4 4 4 4
+load                 : 1
+start                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . load
+    (2) start -> . data
+    (3) load -> . LOAD
+    (4) data -> . float TAB float TAB float TAB float TAB float
+    (5) float -> . INTEGER . INTEGER
+
+    LOAD            shift and go to state 6
+    INTEGER         shift and go to state 5
+
+    data                           shift and go to state 1
+    float                          shift and go to state 2
+    start                          shift and go to state 3
+    load                           shift and go to state 4
+
+state 1
+
+    (2) start -> data .
+
+    $end            reduce using rule 2 (start -> data .)
+
+
+state 2
+
+    (4) data -> float . TAB float TAB float TAB float TAB float
+
+    TAB             shift and go to state 7
+
+
+state 3
+
+    (0) S' -> start .
+
+
+
+state 4
+
+    (1) start -> load .
+
+    $end            reduce using rule 1 (start -> load .)
+
+
+state 5
+
+    (5) float -> INTEGER . . INTEGER
+
+    .               shift and go to state 8
+
+
+state 6
+
+    (3) load -> LOAD .
+
+    $end            reduce using rule 3 (load -> LOAD .)
+
+
+state 7
+
+    (4) data -> float TAB . float TAB float TAB float TAB float
+    (5) float -> . INTEGER . INTEGER
+
+    INTEGER         shift and go to state 5
+
+    float                          shift and go to state 9
+
+state 8
+
+    (5) float -> INTEGER . . INTEGER
+
+    INTEGER         shift and go to state 10
+
+
+state 9
+
+    (4) data -> float TAB float . TAB float TAB float TAB float
+
+    TAB             shift and go to state 11
+
+
+state 10
+
+    (5) float -> INTEGER . INTEGER .
+
+    TAB             reduce using rule 5 (float -> INTEGER . INTEGER .)
+    $end            reduce using rule 5 (float -> INTEGER . INTEGER .)
+
+
+state 11
+
+    (4) data -> float TAB float TAB . float TAB float TAB float
+    (5) float -> . INTEGER . INTEGER
+
+    INTEGER         shift and go to state 5
+
+    float                          shift and go to state 12
+
+state 12
+
+    (4) data -> float TAB float TAB float . TAB float TAB float
+
+    TAB             shift and go to state 13
+
+
+state 13
+
+    (4) data -> float TAB float TAB float TAB . float TAB float
+    (5) float -> . INTEGER . INTEGER
+
+    INTEGER         shift and go to state 5
+
+    float                          shift and go to state 14
+
+state 14
+
+    (4) data -> float TAB float TAB float TAB float . TAB float
+
+    TAB             shift and go to state 15
+
+
+state 15
+
+    (4) data -> float TAB float TAB float TAB float TAB . float
+    (5) float -> . INTEGER . INTEGER
+
+    INTEGER         shift and go to state 5
+
+    float                          shift and go to state 16
+
+state 16
+
+    (4) data -> float TAB float TAB float TAB float TAB float .
+
+    $end            reduce using rule 4 (data -> float TAB float TAB float TAB float TAB float .)
+
